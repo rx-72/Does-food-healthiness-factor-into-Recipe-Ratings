@@ -48,33 +48,26 @@ The distribution of nutrients variables are all much more spread out then what w
 
 We still run into some value issues however, namedly we have a lot of bins with low counts that will reach out to the maximum! For example, consider this histogram on the calories column:
 
-<iframe src="fig_calories.html" width=800 height=600 frameBorder=0></iframe>
-
 ```py
-\n
+<iframe src="fig_calories.html" width=800 height=600 frameBorder=0></iframe>
 ```
 
 We have ALOT of bins and most of them aren't representative of the larger population (Which is near the start at 0). So we'll have to set reduce our value ranges for x using the "x_range":
 
-<iframe src="fig_calories_reduced.html" width=800 height=600 frameBorder=0></iframe>
-
 ```py
-\n
+<iframe src="fig_calories_reduced.html" width=800 height=600 frameBorder=0></iframe>
 ```
 
 Much better, we now see a more clearly distribution goes up early before starting to skew right as calories increase to their maximum. We also begin starting to see small difference changes as the counts reduce around the 1000 calories mark. 
 
 We end up using this process for all of the nutrition variables since all of them have some very large ranges and counts for said values in each range. The determined x_range varies between each variable but the general premise I used was that I removed the values that had the top 200 numerical values of that variable. (so in the instant of calories, setting the x_range max to 5000 reduced around 200 values that had more than 5000 calories. In fact, calories' max went up to 10,000). Here a few examples of histograms we made on protein and carbohydrates:
 
+```py
 <iframe src="fig_carbohydrates_reduced.html" width=800 height=600 frameBorder=0></iframe>
-
-```py
-\n
 ```
-<iframe src="fig_protein_reduced.html" width=800 height=600 frameBorder=0></iframe>
 
 ```py
-\n
+<iframe src="fig_protein_reduced.html" width=800 height=600 frameBorder=0></iframe>
 ```
 
 Essentially all the histograms we made on nutrition variables came to a simular conclusion: The data tended to be right skewed (or even started at the maximum count as you can see in protein) before slowly reducing in counts height and reaching a very low bar count while heading towards the maximum. So we then know for the most part the nutrition variables here tend to be bounded near a value that's clsoer to 0 then some maximum (for example calories at around 1000) and that by right skewed logic, their means >= median >= mode. But this is just the distribution on each nutrition variable separately and not together.(for example a recipe may have near a maximum on calories but near a minimum on protein) How do these variables compare to our average ratings when factored and could we perhaps compound some of them together to create a relationship?
