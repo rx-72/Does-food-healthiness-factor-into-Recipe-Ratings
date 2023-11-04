@@ -27,6 +27,13 @@ I used method 1 when possible else method 2 since method 1 seemed to computate f
 One unique column was nutrition which after I converted to lists I had to change the strings inside to floats. this was achieved use an apply function and more importantly, map().
 
 Finally, since we were interested in variable levels independently, I took the nutritions column we cleaned and made a series based off of each specific index that the nutrition list would indicate based on. For example, I had a column named "number of calories" that made a series based on the first value of every list in "nutrition" (since the first value of the nutrition columns' list values represented calories). I repeated this process for all the variables that were represented in the nutrition list values, creating 7 columns for each overall.
+
 ```py
 print(recipes_new.head().to_markdown(index=False))
 ```
+
+#### Univariate Analysis
+
+We'll look at graphs for our newly created nutrition columns and our average ratings' column.
+
+Firstly, make note that the range of values for the average ratings' column is 0-5 which is a very small range. Hence I found it appropiate to use a box and whisker plot to demonstrate the distribution of the data. The result is below:
