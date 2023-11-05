@@ -73,3 +73,19 @@ We end up using this process for all of the nutrition variables since all of the
 Essentially all the histograms we made on nutrition variables came to a simular conclusion: The data tended to be right skewed (or even started at the maximum count as you can see in protein) before slowly reducing in counts height and reaching a very low bar count while heading towards the maximum. So we then know for the most part the nutrition variables here tend to be bounded near a value that's clsoer to 0 then some maximum (for example calories at around 1000) and that by right skewed logic, their means >= median >= mode. But this is just the distribution on each nutrition variable separately and not together.(for example a recipe may have near a maximum on calories but near a minimum on protein) How do these variables compare to our average ratings when factored and could we perhaps compound some of them together to create a relationship?
 
 #### Bivariate Analysis
+
+I ended up focusing on a potential relationship between each nutrition variable and average ratings. Here one plot result for the variable calories:
+
+```py
+<iframe src="calories_scatter.html" width=800 height=600 frameBorder=0></iframe>
+```
+
+Looking at this plot, it's rather hard to really identify if there is a correlation at all. Based on the plotted trendline, it's really quite the negative slope with a very large constant. Hence it's likely that the correlation between calories and average ratings is in fact not related at all, or no correlation, since the trendline aims to go downward but our data points are shifting upwards as average ratings would increase. What if we did the filtered x range as we did previous on this plot?
+
+```py
+<iframe src="alt_calories_scatter.html" width=800 height=600 frameBorder=0></iframe>
+```
+
+The slope doesn't change that much for the trendline and we still have a lot of high values in just about every type of rating value, so it's quite likely we're seeing a pattern of no correlation. Also to note with both plots is again that we have increasing points for each rating point increase with based on the plot, we have a very high number of datapoints in the ratings of 3 - 5. This matches the pattern we saw in our previous box and whisker plot on just the average ratings. Otherwise, we should expect a lack of correlation between calories and ratings based on these results since the calorie levels are so scattered between all the ratings. (Note this was a similar plot pattern for the rest of the nutrition variables).
+
+#### Interesting Aggregates
