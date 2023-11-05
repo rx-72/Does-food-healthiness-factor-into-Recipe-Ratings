@@ -39,7 +39,9 @@ We'll look at graphs for our newly created nutrition columns and our average rat
 ###### Average ratings graph
 Firstly, make note that the range of values for the average ratings' column is 0-5 which is a very small range. Hence I found it appropiate to use a box and whisker plot to demonstrate the distribution of the data. The result is below:
 
+```py
 <iframe src="fig_average.html" width=800 height=600 frameBorder=0></iframe>
+```
 
 Looking at it carefully, we can clearly see some interesting behavior here. The biggest interest is that the maximum, upper quartile and median is all on the same value of 5. Our lower quartile is still quite high at 4 and an approximate minimum at around 2.43 and a large amount of listed outlier minimums on the left side of the box and whisker plot, ranging from 2.3 to 0. To me, this distribution seems to be telling us that a lot of our average ratings for this data seems to be quite high, in fact we might be having a very large amount of data that has is around the score 5 in fact (hence the median, upperquartile, and max all being 5). Even disregarding the 5 values, a lot of the data seems to still be shifted upwards, where 4 is the first quartile which is still quite a bit higher than expected.
 
@@ -89,3 +91,19 @@ Looking at this plot, it's rather hard to really identify if there is a correlat
 The slope doesn't change that much for the trendline and we still have a lot of high values in just about every type of rating value, so it's quite likely we're seeing a pattern of no correlation. Also to note with both plots is again that we have increasing points for each rating point increase with based on the plot, we have a very high number of datapoints in the ratings of 3 - 5. This matches the pattern we saw in our previous box and whisker plot on just the average ratings. Otherwise, we should expect a lack of correlation between calories and ratings based on these results since the calorie levels are so scattered between all the ratings. (Note this was a similar plot pattern for the rest of the nutrition variables).
 
 #### Interesting Aggregates
+
+All of the columns we're working with are numerical so for proper pivot tabling, I used pd.qcut on columns of interest to create bins to pivot on. One such example where I made bins on average ratings and calories and pivot table on count is shown below:
+
+```py
+print(pivot_calories_count.to_markdown(index=False))
+```
+
+Main thing of interest for this pivot table was how many recipes were binned based on not only ratings but also number of calories (Based on pdcut bins of 10). The main topic of interest is that bins (-0.001, 3.0] and (4.0, 4.6] have very similiar distributions and counts between one another in terms of calories, though (-0.001, 3.0] is a bit higher in terms of values (both are spread around the 300-500 count). Meanwhile bin (3.0, 4.0] takes 2nd place with viewable increase in counts based on calory bins (around the 800 counts) and as we see there are a lot of values in the (4.6, 5.0] bin row (Around 2500 counts on each cell!). This showcases besides the already established massive count of values near ratings 5 that the range (3.0, 4.0] is probably secondary in that count with bins (-0.001, 3.0] and (4.0, 4.6] taking 3rd and 4th respectively in terms of count as well likely having similar counts of ratings. If we do some groupbys on the rating bins and then agg some funcs (mean, median, and mode), here's our results on calories respectively:
+
+|   number of calories |
+|---------------------:|
+|               320.1  |
+|               312.85 |
+|               303.3  |
+|               300.6  |
+
