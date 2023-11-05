@@ -94,16 +94,41 @@ The slope doesn't change that much for the trendline and we still have a lot of 
 
 All of the columns we're working with are numerical so for proper pivot tabling, I used pd.qcut on columns of interest to create bins to pivot on. One such example where I made bins on average ratings and calories and pivot table on count is shown below:
 
-```py
-print(pivot_calories_count.to_markdown(index=False))
-```
+|   (-0.001, 58.0] |   (58.0, 91.1] |   (91.1, 119.715] |   (119.715, 146.5] |   (146.5, 171.325] |   (171.325, 196.6] |   (196.6, 222.4] |   (222.4, 248.9] |   (248.9, 276.7] |   (276.7, 305.4] |   (305.4, 337.2] |   (337.2, 370.6] |   (370.6, 407.1] |   (407.1, 448.1] |   (448.1, 498.7] |   (498.7, 563.3] |   (563.3, 650.3] |   (650.3, 783.0] |   (783.0, 1078.775] |   (1078.775, 45609.0] |
+|-----------------:|---------------:|------------------:|-------------------:|-------------------:|-------------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|-----------------:|--------------------:|----------------------:|
+|              461 |            433 |               447 |                439 |                437 |                452 |              433 |              436 |              436 |              429 |              450 |              423 |              450 |              455 |              489 |              457 |              501 |              487 |                 508 |                   591 |
+|              726 |            768 |               759 |                777 |                782 |                796 |              790 |              780 |              806 |              794 |              845 |              803 |              811 |              778 |              835 |              836 |              820 |              847 |                 804 |                   795 |
+|              366 |            403 |               427 |                472 |                446 |                407 |              459 |              426 |              455 |              462 |              452 |              422 |              454 |              421 |              457 |              448 |              422 |              407 |                 411 |                   378 |
+|             2638 |           2593 |              2547 |               2511 |               2514 |               2542 |             2500 |             2558 |             2481 |             2510 |             2443 |             2535 |             2476 |             2534 |             2407 |             2450 |             2446 |             2448 |                2462 |                  2426 |
+
 
 Main thing of interest for this pivot table was how many recipes were binned based on not only ratings but also number of calories (Based on pdcut bins of 10). The main topic of interest is that bins (-0.001, 3.0] and (4.0, 4.6] have very similiar distributions and counts between one another in terms of calories, though (-0.001, 3.0] is a bit higher in terms of values (both are spread around the 300-500 count). Meanwhile bin (3.0, 4.0] takes 2nd place with viewable increase in counts based on calory bins (around the 800 counts) and as we see there are a lot of values in the (4.6, 5.0] bin row (Around 2500 counts on each cell!). This showcases besides the already established massive count of values near ratings 5 that the range (3.0, 4.0] is probably secondary in that count with bins (-0.001, 3.0] and (4.0, 4.6] taking 3rd and 4th respectively in terms of count as well likely having similar counts of ratings. If we do some groupbys on the rating bins and then agg some funcs (mean, median, and mode), here's our results on calories respectively:
 
-|   number of calories |
-|---------------------:|
-|               320.1  |
-|               312.85 |
-|               303.3  |
-|               300.6  |
+MeanL
+| rating bins   |   number of calories |
+|:--------------|---------------------:|
+| (-0.001, 3.0] |              477.289 |
+| (3.0, 4.0]    |              426.041 |
+| (4.0, 4.6]    |              410.256 |
+| (4.6, 5.0]    |              425.822 |
+
+Median:
+| rating bins   |   number of calories |
+|:--------------|---------------------:|
+| (-0.001, 3.0] |               320.1  |
+| (3.0, 4.0]    |               312.85 |
+| (4.0, 4.6]    |               303.3  |
+| (4.6, 5.0]    |               300.6  |
+
+Mode:
+| rating bins   |   number of calories |
+|:--------------|---------------------:|
+| (-0.001, 3.0] |                 71.5 |
+| (3.0, 4.0]    |                239.7 |
+| (4.0, 4.6]    |                159.1 |
+| (4.6, 5.0]    |                176.9 |
+
+As we see, the distribution is highly biased on mean where mean > median > mode (which makes sense when we consider the graph we made on calories). If we ever plan to do some distribution testing on the calories, we should likely avoid the mean in this scenario and determine whether we should use the mode or median.
+
+While our pivot table above looks rather spread well, we did create other pivot tables with much less of a lack of spread between row values. For example, on our protein count pivot table to the left of the (4.6, 5.0] bin for ratings, we had a very high amount of recipes in the (-0.001, 1.0] bin under protein (4481 to be exact) in comparison to the rest of the row values (which were spread across the usual (1500 - 2500 range though one value came with 3394 under protein bin (3.0, 5.0]).
 
