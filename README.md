@@ -43,9 +43,7 @@ We'll look at graphs for our newly created nutrition columns and our average rat
 ###### Average ratings graph
 Firstly, make note that the range of values for the average ratings' column is 0-5 which is a very small range. Hence I found it appropiate to use a box and whisker plot to demonstrate the distribution of the data. The result is below:
 
-```py
 <iframe src="fig_average.html" width=800 height=600 frameBorder=0></iframe>
-```
 
 Looking at it carefully, we can clearly see some interesting behavior here. The biggest interest is that the maximum, upper quartile and median is all on the same value of 5. Our lower quartile is still quite high at 4 and an approximate minimum at around 2.43 and a large amount of listed outlier minimums on the left side of the box and whisker plot, ranging from 2.3 to 0. To me, this distribution seems to be telling us that a lot of our average ratings for this data seems to be quite high, in fact we might be having a very large amount of data that has is around the score 5 in fact (hence the median, upperquartile, and max all being 5). Even disregarding the 5 values, a lot of the data seems to still be shifted upwards, where 4 is the first quartile which is still quite a bit higher than expected.
 
