@@ -136,3 +136,33 @@ As we see, the distribution is highly biased on mean where mean > median > mode 
 
 While our pivot table above looks rather spread well, we did create other pivot tables with much less of a lack of spread between row values. For example, on our protein count pivot table to the left of the (4.6, 5.0] bin for ratings, we had a very high amount of recipes in the (-0.001, 1.0] bin under protein (4481 to be exact) in comparison to the rest of the row values (which were spread across the usual (1500 - 2500 range though one value came with 3394 under protein bin (3.0, 5.0]).
 
+## Assessment of Missingness
+
+#### NMAR Anaylsis
+
+During our cleaning, we already singled out any possible missing values in our data. Here's our result below:
+
+|                           |   0 |
+|:--------------------------|----:|
+| name                      |   1 |
+| id                        |   0 |
+| minutes                   |   0 |
+| contributor_id            |   0 |
+| submitted                 |   0 |
+| tags                      |   0 |
+| nutrition                 |   0 |
+| n_steps                   |   0 |
+| steps                     |   0 |
+| description               |  70 |
+| ingredients               |   0 |
+| n_ingredients             |   0 |
+| average_rating_per_recipe |   1 |
+
+As you can see, we have 3 columns with missing values, "name", "average_rating_per_recipe", and "description".
+
+Let's start with the quickest one, "average_rating_per_recipe". See this was column that was created by merged data from another dataset, "interactions", which contained per each recipe id multiple rating reviews. For each recipe id, we calcualted their mean from the ratings they've recieved in this dataset and add them as a new column in our non-merged recipe dataset. And yet despite this process we still recieved one missing value, on id 314968, "napa dave s individual breakfast casseroles". If we didn't recieve a value for this recipe on the column, it doesn't exist in the interactions dataset, or rather it never recievewed a rating. To confirm this, we can searching up the id here in the interactions dataset ( "interactions[interactions["recipe_id"] == 314968]" ) and we end up with an empty dataset. But ignoring this we know based on the data for this column is generated, we can predict accurately if a value will have missing data base on whether they have ratings in the interaction dataset. Hence the missing value in this column is not NMAR but instead MD, or "missing by design".
+
+Next we have the "name" column. If we look at the recipe itself (id 368257), it seems based on the ingredients and the instruction steps, it seems to be some kind of salad complementary dish (minus the greens which the steps indicate to add with). I believe this column is the closest data we have to NMAR, or not missing at random. Since the dish itself simple but hard to describe a specific name (it's a sald without the greens?) I think user decided to not add a name or rather couldn't add a name that would be appropiate for said dish. (else they would've easily add one in if it could even be explained somewhat, like cookies or pasta). This is further evidenced by the added tags relating to salad dishes, which makes sense, it's a salad complentary dish when you add the greens but not exactly until you do so. What would you name that dish as then? Hence I think the missing value for this column is indeed NMAR since if the user could have had an appropiate name for the recipe, there's a very good chance they've would've named it so. Note however we can't really confirm this 100% since this is only based off of one single missing value we have for this column but based on how data is generated for this column and the likely simplicity of filling this column is,  I believe the reasoning is strong to make a basis off that it is NMAR.
+
+Finally we have the "description" column. At a first glance, I thought this might be a potential canidate towards NMAR since if a recipe was generic enough (like say "very tasty chocolate chip cookies") it would be less reliant in needing a recipe name (since most people know a premise of a "chocolate chip cookie"). Essentially it was possible that people didn't put a description for recipes that needed less of a description. Looking at what recipes are missing descriptions however deconfirms this, since we have recipes like "apricot gorgonzola crescent appetizers" or "baked yams with spicy molasses butter" which I don't think are generic enough to be relevant towards a missing description. In fact, something like a recipe containing the word "appetizer" is a bit vague (what kind of appetizer?) hence I think one would logically put a description for a recipe titled that way. I couldn't think of any other possible NMAR reasons for this column anad hence would label it as not NMAR.
+
