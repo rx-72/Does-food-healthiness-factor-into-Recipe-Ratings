@@ -68,9 +68,9 @@ Much better, we now see a more clearly distribution goes up early before startin
 
 We end up using this process for all of the nutrition variables since all of them have some very large ranges and counts for said values in each range. The determined x_range varies between each variable but the general premise I used was that I removed the values that had the top 200 numerical values of that variable. (so in the instant of calories, setting the x_range max to 5000 reduced around 200 values that had more than 5000 calories. In fact, calories' max went up to 10,000). Here a few examples of histograms we made on protein and carbohydrates:
 
-```py
+
 <iframe src="fig_carbohydrates_reduced.html" width=800 height=600 frameBorder=0></iframe>
-```
+
 
 ```py
 <iframe src="fig_protein_reduced.html" width=800 height=600 frameBorder=0></iframe>
