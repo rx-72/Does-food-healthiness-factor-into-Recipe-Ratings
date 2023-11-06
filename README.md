@@ -37,6 +37,9 @@ Here's the head of our cleaned dataframe:
 | 412 broccoli casserole             | 306168 |        40 |            50969 | 2008-05-30 00:00:00 |         6 |               9 |                           5 |                194.8 |                20 |             6 |             32 |              22 |                    36 |                     3 |
 | millionaire pound cake             | 286009 |       120 |           461724 | 2008-02-12 00:00:00 |         7 |               7 |                           5 |                878.3 |                63 |           326 |             13 |              20 |                   123 |                    39 |
 | 2000 meatloaf                      | 475785 |        90 |          2202916 | 2012-03-06 00:00:00 |        17 |              13 |                           5 |                267   |                30 |            12 |             12 |              29 |   
+
+(Note that we dropped columns in our above data head display (specifically columns "tags", "nutrition", "steps", "description", and "ingredients") since they contained information overflow for reference sake. Note these columns while dropped are still included in real dataframe.)
+
 #### Univariate Analysis
 
 We'll look at graphs for our newly created nutrition columns and our average ratings' column.
