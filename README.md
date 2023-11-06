@@ -142,7 +142,7 @@ While our pivot table above looks rather spread well, we did create other pivot 
 
 During our cleaning, we already singled out any possible missing values in our data. Here's our result below:
 
-|                           |   0 |
+|                           |   Missing values |
 |:--------------------------|----:|
 | name                      |   1 |
 | id                        |   0 |
