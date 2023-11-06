@@ -108,7 +108,7 @@ All of the columns we're working with are numerical so for proper pivot tabling,
 
 Main thing of interest for this pivot table was how many recipes were binned based on not only ratings but also number of calories (Based on pdcut bins of 10). The main topic of interest is that bins (-0.001, 3.0] and (4.0, 4.6] have very similiar distributions and counts between one another in terms of calories, though (-0.001, 3.0] is a bit higher in terms of values (both are spread around the 300-500 count). Meanwhile bin (3.0, 4.0] takes 2nd place with viewable increase in counts based on calory bins (around the 800 counts) and as we see there are a lot of values in the (4.6, 5.0] bin row (Around 2500 counts on each cell!). This showcases besides the already established massive count of values near ratings 5 that the range (3.0, 4.0] is probably secondary in that count with bins (-0.001, 3.0] and (4.0, 4.6] taking 3rd and 4th respectively in terms of count as well likely having similar counts of ratings. If we do some groupbys on the rating bins and then agg some funcs (mean, median, and mode), here's our results on calories respectively:
 
-MeanL
+Mean:
 | rating bins   |   number of calories |
 |:--------------|---------------------:|
 | (-0.001, 3.0] |              477.289 |
