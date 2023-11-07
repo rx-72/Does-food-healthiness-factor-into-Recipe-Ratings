@@ -163,6 +163,9 @@ Finally we have the "description" column. At a first glance, I thought this migh
 Since I determined the "description" column as neither NMAR nor MD, I've done some permutation tests on "description" against other columns in my dataset to determine if certain columns may influence the missingness on the "description" column. For example, here are the results below for a permutation test of missingness on 
 "description" against the column "minutes".
 
+<iframe src="Distribution_missingess_minutes.html" width=800 height=600 frameBorder=0></iframe>
+
+
 
 
 
