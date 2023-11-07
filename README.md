@@ -158,3 +158,11 @@ Next we have the "name" column. If we look at the recipe itself (id 368257), it 
 
 Finally we have the "description" column. At a first glance, I thought this might be a potential canidate towards NMAR since if a recipe was generic enough (like say "very tasty chocolate chip cookies") it would be less reliant in needing a recipe name (since most people know a premise of a "chocolate chip cookie"). Essentially it was possible that people didn't put a description for recipes that needed less of a description. Looking at what recipes are missing descriptions however deconfirms this, since we have recipes like "apricot gorgonzola crescent appetizers" or "baked yams with spicy molasses butter" which I don't think are generic enough to be relevant towards a missing description. In fact, something like a recipe containing the word "appetizer" is a bit vague (what kind of appetizer?) hence I think one would logically put a description for a recipe titled that way. I couldn't think of any other possible NMAR reasons for this column anad hence would label it as not NMAR.
 
+#### Missingness Dependency
+
+Since I determined the "description" column as neither NMAR nor MD, I've done some permutation tests on "description" against other columns in my dataset to determine if certain columns may influence the missingness on the "description" column. For example, here are the results below for a permutation test of missingness on 
+"description" against the column "minutes".
+
+
+
+
