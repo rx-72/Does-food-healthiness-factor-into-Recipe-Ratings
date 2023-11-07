@@ -160,12 +160,36 @@ Finally we have the "description" column. At a first glance, I thought this migh
 
 #### Missingness Dependency
 
-Since I determined the "description" column as neither NMAR nor MD, I've done some permutation tests on "description" against other columns in my dataset to determine if certain columns may influence the missingness on the "description" column. For example, here are the results below for a permutation test of missingness on 
-"description" against the column "minutes".
+Since I determined the "description" column as neither NMAR nor MD, I've done some permutation tests on "description" against other columns in my dataset to determine if certain columns may influence the missingness on the "description" column. For example, here are the results below for a permutation test of missingness on "description" against the column "minutes".
 
 <iframe src="Distribution_missingess_minutes.html" width=800 height=600 frameBorder=0></iframe>
 
+Hovering over the redline which represents our observed statistic for our dataset, we end up seeing the distribution on missingness against minutes seems to be situated in the highly common area (for reference, the calculated p value we got on this dataset was approximately 0.592, where we did the absolute difference between means for our test statistic). So we know our observed statistic ended up seeming quite common among simulations but let's anaylze further. Below is the data distributions of minutes for values with a missing description value and values without a missing description value (both on a histogram):
 
+<iframe src="minutes_distribution_isna.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="minutes_distribution_notna.html" width=800 height=600 frameBorder=0></iframe>
+
+Notice how similar both distributions are! Recall from lecture 7 that if a column was not MAR to another column, that secondary column would have the same distribution for both non missing values on the first column and missing values on the first column. So with that piece of info in mind, since both plots have similar distributions to one another, we conclude that the missing values of "description" are not MAR with the "minutes" column.
+
+Let's try another column. Suppose I decided to now do permutations tests with a test statistic of the absolute difference between means for missing values of "description" on the column "n_ingredients" (or the number of ingredients a recipe has). Here's our result:
+
+<iframe src="missingness_descrip_and_n_ingredients.html" width=800 height=600 frameBorder=0></iframe>
+
+Notice our observed statistic is signficantly farther from the distribution of the rest of data. Here our calculated p_value for this test 0.0 (though in reality it really ranged from 0 to 0.001). This implies against the null hypothesis here that the missingness of the "description" is not dependent on the column "n_ingredients", but let's try looking further by doing distribution plots on "n_ingredients" for missing values on "description" and non-missing values on "description":
+
+<iframe src="n_ingredients_distribution_isna.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="n_ingredients_distribution_notna.html" width=800 height=600 frameBorder=0></iframe>
+
+Notice how unlike the distributions on "minutes", the distribution for "n_ingredients" seems to be very different between missing and non missing values of "description"!. Therefore since the two distribution plots seem non-similar to one another and we have a very low p significant value, we can conclude that there's a strong possibility that "description" could be MAR on the column "n_ingredients". As for good reasoning towards why this might be the case, consider my previous description of "description" where I considered certain recipes that were simplistic (chocolate chip cookies) may not necessarily warranted a description. Something similar could be happening with "n_ingredients" column, where certain recipes have self explanatory types of ingredients (such as a salad: greens, olives, tomatoes, etc.) where a lower number of ingredients required could warrant less of a need of a description (especially if the ingredients themselves are already self explanatory and not as unique). This further evidenced by how overall it seems the distribution of "n_ingredients" on missing values were on average lower than the distribution of "n_ingredients" on non-missing values.
+the distribution on missing values for "ni
+
+Other columns that we commited permutations test are available on our python file, which includes no evidence for MAR on average ratings of recipes, number of steps, and name of a recipe (used string length of the recipe to check); and evidence for MAR on the number of days from the day submitted to the current day (11/6/2023). 
+
+Notice how our columns of missing values for description isn't really relevant to our project question at a first glance. While this may be true, it's still important to consider especially if one of our columns that we aimed to hypothesize about ended up helping to determine the missing values. For example, suppose we found the average ratings of a recipe determined MAR of missing values in column "description". If that was the case, we might be more wary on how we commited tests on the average ratings since it may or may not have been deliberately engineering to be (or at least look to be) MAR. Or what if we tested one of nutrition values (say calories) on the missingess and recieved evidence for MAR? Well then even if we later determine calories to not be related to average ratings, we could say that this data may be skewed due to the fact that we don't know if calories being MAR for a column of missing values is natural or not for such a dataset, meaning said columns and result may not necessarily be 100% true and filtered. We could also come to a similar conclusion even if calories were foudn to be related to average ratings. Hence even though the missingness column isn't really relevant to our question, it's still important to analyze it since it may play a larger role in one of the columns we want to test or even biase a result because of it.
+
+## Hypothesis Testing
 
 
 
