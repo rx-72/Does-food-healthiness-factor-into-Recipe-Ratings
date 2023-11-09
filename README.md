@@ -189,5 +189,14 @@ Notice how our columns of missing values for description isn't really relevant t
 
 ## Hypothesis Testing
 
+Firstly we'll state our hypothesis on our question (or rather hypotheses). For our null hypothesis, we have that recipes that contain healthy levels of a nutritional factor are not relevant to how average ratings of a recipe is generated. For the alternate hypothesis, recipes containg healthy levels of a nutrtional factor are relevant to how average ratings of a recipe is generated. Note that we'll be committing 7 pairs of this null to alternate hypothesis with one for each unique nutritional factor in the column "nutritions" (hence hypotheses). For simplicity sake, a healthly level for calories is 1687.5 caloriees (average intake for women is 2000 and average intake for men is 2500 daily so we take 75% of each and divide the sum by 2). This can be very easily be argued to be lower but we'll keep it as high as well can for potential of a significant value (and can reduce it slowly from there). We'll do something similar to the 6 nutrition factors under units PDV (percentage daily value), where we assume a healthy level for a recipe at highest is 50% or 50 PDV value. Since 100% is the maximum daily recommended outtake, 50% at highest should be a safe bet of healthy intake value of pdv for any variable. Note it's rather hard to determine a healthy level of food for a pdv (since it varies between diet and how much one plans to eat) so 50% pdv for each value as our limit shouldn't be too unhealthy pdv values and neither be too low to not catch potential healthy pdv values.
+
+I plan to use a permutation test, where once again using absolute difference of means to be my test statistic, I begin by filtering the dataset between two groups where one has healthy levels of a nutrition (less than or equal to) and the other will have non healthy levels of a nutrition (greater than) and then calculate the absolute difference btween the mean of their values inside their "average_rating_per_recipe" column, hence becomign my observed statistic. Absolute mean is used again since we're once again comparing two distributions of similar values to determine whether they're alike or not. Then I run permutation simulations on the nutrition value and find my test statistic over 1000 simulations and adding them into a list before comparing it to my observed statistic. The proportion of values from my simulation runs >= my observed statistic will be my calculated p value to compare with my significance level. 
+
+Finally I will test at a significance level of 0.01 to be completely certain of the data hypothesis we may generate (this also helps reduce the bias a 75% percent test value may cause). 
+
+Here's one result on the number of calories a recipe contains:
+
+
 
 
