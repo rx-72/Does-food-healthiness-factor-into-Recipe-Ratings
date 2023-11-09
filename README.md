@@ -197,6 +197,9 @@ Finally I will test at a significance level of 0.01 to be completely certain of 
 
 Here's one result on the number of calories a recipe contains:
 
+<iframe src="calories_significance.html" width=800 height=600 frameBorder=0></iframe>
 
+As we see, the observed statistic ends up being signifcantly farther away from the test values hence the pvalue is almost completely 0. Therefore since we have a p-value of below our test significance of 0.01, we can reject our null hypothesis that healthy levels of calories do not play a role in determining average ratings of recipes. In fact, every nutrition variable under our tests of 1687.5 calories and 50 pdv ended up having a signficance of near 0 and hence rejecting the null. This seems strange but if you recall our scatter plots from our bivariate anaylsis, you'll remember we saw large concentrations of low nutrition values often around the high 3 -5 ratings. and highly nutrition values were less frequent. Hence it's not too surpising that these large concentrations ends up dictating the lower bounds more near 4-5 rating in this testing scenario while upper bounds tend to be more distributed among the range of 0-5 on average rating. 
 
+To conclude, we can say at the highest level of possible healthiness in nutritional varaibles, there is evidence that these boundaries play a role in determining the average rating of a recipe. If we wanted to divide further into this study, we could try using a lower test variable (below 50 pdv for example) to determine how low we can go before a variables pdv no longer becomes significant to the average rating. Similarly we could also further explore compound effects such as how multiple of these factors could play a role together onto the column of average recipe ratings (since we only tested on one to one column relationships.)
 
