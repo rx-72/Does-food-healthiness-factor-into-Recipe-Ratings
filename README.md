@@ -172,7 +172,7 @@ Notice how similar both distributions are! Recall from lecture 7 that if a colum
 
 Let's try another column. Suppose I decided to now do permutations tests with a test statistic of the absolute difference between means for missing values of "description" on the column "n_ingredients" (or the number of ingredients a recipe has). Here's our result:
 
-<iframe src="n_ingredients_distribution_notna.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="missingness_n_ingredients.html" width=800 height=600 frameBorder=0></iframe>
 
 Notice our observed statistic is signficantly farther from the distribution to the rest of data. Here our calculated p_value for this test 0.004 (likely really ranging from 0 to 0.005 on a normal basis approximately). This then implies evidence against the null hypothesis here that the missingness of the "description" is not dependent on the column "n_ingredients", but let's try looking further by doing distribution plots on "n_ingredients" for missing values on "description" and non-missing values on "description":
 
