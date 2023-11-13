@@ -14,7 +14,7 @@ For each column I followed the following procedure:
 1. Run df[column_name].isna() to get the amount of na values (if any) in each column to replace.
 2. Run (df[column name] <= 0).sum() or (df[column name].str.len == 0).sum() to see if any values had a 0 or less or a string with essentially no value.
 
-If the column had a na value, we would fill it with a relevant value. For example, if the column "descriptions" had nas, all the nas were filled with the string "No Description Given" (since all non na values in "description" column were strings)
+If the column had a na value, we would fill it with a relevant value. For example, if the column "descriptions" had nas, all the nas were filled with the string "No Description Given" (since all non na values in "description" column were strings).
 Some columns had 0 for values but were fine to include (for example "average_ratings_recipe") so no changes were made. There also weren't any strings that had length 0 so no changes were made in that regard towards any string columns.
 
 I also checked for duplicates on certain columns (for example recipe_id) to confirm no duplicates would occur incorrectly and didn't find any hits. 
@@ -22,7 +22,7 @@ One specific column ("submitted") was converted to a datetime object else nothin
 
 The most important variable change was that specific values in the dataframe that looked like lists were really strings (examples include "nutrition", "steps", etc.). These strings were converted to lists with the following methods:
 
-1. "df[column_name].str.replace("'", "").str.replace("'[", "").str.replace("]", "").str.split(", ")":   (naive method, assumed there weren't any commas inside a value for example)
+1. "df[column_name].str.replace("'", "").str.replace("[", "").str.replace("]", "").str.split(", "):   (naive method, assumed there weren't any commas and required quotations inside a value for example)
   
 2. "df[column_name].apply(eval)":  (better method but ran much slower. Had to use on certain columns like "steps" which had commas in some values so couldn't split on that variable)
 I used method 1 when possible else method 2 since method 1 seemed to computate faster, but there were still columns that had to be ran on "eval" (again "steps" for example.)
