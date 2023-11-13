@@ -125,7 +125,7 @@ Mode:
 
 As we see, the distribution is highly biased on mean where mean > median > mode (which makes sense when we consider the graph we made on calories). If we ever plan to do some distribution testing on the calories, we should be carfeul toward using the mean in this scenario and determine if we could make use of the mode or median.
 
-While our pivot table above looks rather spread out equally, we did create other pivot tables with much less of a lack of spread between row values. For example, on our protein count pivot table to the left of the (4.6, 5.0] bin for ratings, we had a very high amount of recipes in the (-0.001, 1.0] protein bin (4481 to be exact) in comparison to the rest of the row values (which were spread across the usual 1500 - 2500 range, though one value came with 3394 under protein bin (3.0, 5.0]).
+While our pivot table above looks rather spread out equally, we did create other pivot tables with much less of a lack of spread between row values. For example, on our protein count pivot table to the left of the (4.6, 5.0] bin for ratings, we had a very high amount of recipes in the (-0.001, 1.0] protein bin (4481 to be exact) in comparison to the rest of the row values (which were spread across the usual 1500 - 2500 range, though one value came with 3394 under protein bin (3.0, 5.0]). Additional pivot tables are available to view on the submitted notebook pdf.
 
 ## Assessment of Missingness
 
