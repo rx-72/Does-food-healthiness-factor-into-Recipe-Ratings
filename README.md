@@ -1,5 +1,5 @@
 # Recipe ratings against nutritional values
-Project on a given data for Recipe and Ratings for DSC80
+Project on a given dataset for Recipe and Ratings for DSC80
 
 
 ## Introduction
